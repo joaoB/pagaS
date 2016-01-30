@@ -122,7 +122,8 @@
                                                 {% endif %}
                                                 {% if  attribute(value, "tipPercentage")  >= 75 and attribute(value, "tipPercentage") < 90 %}
                                                 <span class="label label-info"> <b>Boa</b>
-                                                    {% else %}
+                                                    {% endif %}
+                                                    {% if attribute(value, "tipPercentage") >= 90 %}
                                                     <span class="label label-primary"> <b>Muito boa</b>
                                                         {% endif %}
                                              </span>
