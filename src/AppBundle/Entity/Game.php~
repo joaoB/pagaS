@@ -1,0 +1,81 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: joasil
+ * Date: 29-01-2016
+ * Time: 14:01
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="game")
+ */
+class Game {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="home", type="string", length=255)
+     */
+    private $home;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="away", type="string", length=255)
+     */
+    private $away;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="homeWin", type="integer")
+     */
+    private $homeWin;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="awayWin", type="integer")
+     */
+    private $awayWin;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="draws", type="integer")
+     */
+    private $draws;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="over", type="integer")
+     */
+    private $over;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="under", type="integer")
+     */
+    private $under;
+
+
+
+}

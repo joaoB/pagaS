@@ -1,0 +1,57 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: joasil
+ * Date: 29-01-2016
+ * Time: 14:03
+ */
+
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="user_vote")
+ */
+class UserVote {
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="userId", referencedColumnName="id")
+     */
+    private $userId;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="game")
+     * @ORM\JoinColumn(name="gameId", referencedColumnName="id")
+     */
+    private $gameId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="result", type="string", length=255)
+     */
+    private $result;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="goals", type="string", length=255)
+     */
+    private $goals;
+
+
+
+}

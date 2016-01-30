@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	
+	{{ data|json_encode() }}
+	
+	{% for value in data %}
+		team : {{ value['label'] }}
+		data : {{ value['data'] }}
+		<script>
+			
+		
+		</script>
+		<br/>
+	{% endfor %}
+	
+	
+{% endblock %}

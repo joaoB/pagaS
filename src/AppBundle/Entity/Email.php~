@@ -1,0 +1,53 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Email
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+
+//TODO: maybe change some stuff to TEXT instead strings
+class Email {
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="subject", type="string", length=255)
+     */
+    private $subject;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="string", length=20000)
+     */
+    private $message;
+}

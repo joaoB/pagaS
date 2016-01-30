@@ -1,0 +1,17 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+
+services:
+        game_worker:
+          class:        AppBundle\Services\Game
+          arguments: [ @doctrine.orm.entity_manager ,@request_stack]
+        bot_singletion:
+          class: AppBundle\Services\BotSingleton
+          arguments: [@doctrine.orm.entity_manager]
+        message_worker:
+          class: AppBundle\Services\Message
+          arguments: [ @doctrine.orm.entity_manager ,@request_stack]
+        app.provider.oauth:
+           class: AppBundle\Security\Core\User\FOSUBUserProvider
+           arguments: [@fos_user.user_manager,{facebook: facebook_id}]

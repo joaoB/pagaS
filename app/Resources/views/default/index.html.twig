@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}	
+hey {{ app.user.lastName }}
+			<div class="container">
+					    <div class="row top-buffer">
+
+							<div class="col-md-2"><!--Column left--></div>
+
+							<div class="col-md-8">
+								<div id="Box">
+									<div id="PastCommands"></div>
+									<span id="C">You: </span> <span id="FakeTextbox"></span><span id="Score">_</span>
+
+									<p><input type="text" id="RealTextbox" /></p>
+								</div>
+
+							
+							</div>
+
+							<div class="col-md-2"><!--Column right--></div>
+
+						</div>	
+				</div>									
+            <div id="status"></div>
+        </div>
+{% endblock %}
+

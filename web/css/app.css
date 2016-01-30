@@ -1,0 +1,26 @@
+#RealTextbox{
+	position: absolute;
+    left: -300px;
+}
+
+#Box{
+	height: 250px; /*Specify Height*/
+	width:  700px; /*Specify Width*/
+	border: 1px solid grey; /*Add 1px solid border, use any color you want*/
+	background-color: black; /*Add a background color to the box*/
+	color: white;
+	font-family : 'Ubuntu', sans-serif;
+	font-size: 12px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu'), url(http://fonts.gstatic.com/s/ubuntu/v8/l61wsm10hTEpJuizfs2S_g.woff2) format('woff2');
+}
+
+.top-buffer { margin-top:20px; }
