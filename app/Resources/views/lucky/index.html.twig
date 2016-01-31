@@ -114,11 +114,14 @@
                                         <b>{{ attribute(value, "tipGoals") }}</b>
                                     </td>
                                     <td>
-                                        {% if  attribute(value, "tipPercentage")  > 50 and attribute(value, "tipPercentage") < 60 %}
-                                        <span class="label label-warning"> <b>Media</b>
+                                        {% if  attribute(value, "tipPercentage")  < 50 %}
+                                        <span class="label label-danger"> <b>Baixa</b>
+                                            {% endif %}
+                                        {% if  attribute(value, "tipPercentage")  >= 50 and attribute(value, "tipPercentage") < 60 %}
+                                        <span class="label label-warning"> <b>Média</b>
                                             {% endif %}
                                             {% if  attribute(value, "tipPercentage")  >= 60 and attribute(value, "tipPercentage") < 75 %}
-                                            <span class="label label-success"> <b>Media alta</b>
+                                            <span class="label label-success"> <b>Média alta</b>
                                                 {% endif %}
                                                 {% if  attribute(value, "tipPercentage")  >= 75 and attribute(value, "tipPercentage") < 90 %}
                                                 <span class="label label-info"> <b>Boa</b>
