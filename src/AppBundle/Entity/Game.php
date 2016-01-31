@@ -60,6 +60,12 @@ class Game {
      */
     private $draws;
 
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="goals", type="decimal", precision=8, scale=2)
+     */
+    private $goals;
 
     /**
      * @var integer
@@ -255,5 +261,29 @@ class Game {
     public function getUnder()
     {
         return $this->under;
+    }
+
+    /**
+     * Set goals
+     *
+     * @param string $goals
+     *
+     * @return Game
+     */
+    public function setGoals($goals)
+    {
+        $this->goals = $goals;
+
+        return $this;
+    }
+
+    /**
+     * Get goals
+     *
+     * @return string
+     */
+    public function getGoals()
+    {
+        return $this->goals;
     }
 }

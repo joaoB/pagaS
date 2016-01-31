@@ -60,6 +60,12 @@ class Game {
      */
     private $draws;
 
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="goals", type="decimal", precision=8, scale=2)
+     */
+    private $goals;
 
     /**
      * @var integer
@@ -78,4 +84,182 @@ class Game {
 
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set home
+     *
+     * @param string $home
+     *
+     * @return Game
+     */
+    public function setHome($home)
+    {
+        $this->home = $home;
+
+        return $this;
+    }
+
+    /**
+     * Get home
+     *
+     * @return string
+     */
+    public function getHome()
+    {
+        return $this->home;
+    }
+
+    /**
+     * Set away
+     *
+     * @param string $away
+     *
+     * @return Game
+     */
+    public function setAway($away)
+    {
+        $this->away = $away;
+
+        return $this;
+    }
+
+    /**
+     * Get away
+     *
+     * @return string
+     */
+    public function getAway()
+    {
+        return $this->away;
+    }
+
+    /**
+     * Set homeWin
+     *
+     * @param integer $homeWin
+     *
+     * @return Game
+     */
+    public function setHomeWin($homeWin)
+    {
+        $this->homeWin = $homeWin;
+
+        return $this;
+    }
+
+    /**
+     * Get homeWin
+     *
+     * @return integer
+     */
+    public function getHomeWin()
+    {
+        return $this->homeWin;
+    }
+
+    /**
+     * Set awayWin
+     *
+     * @param integer $awayWin
+     *
+     * @return Game
+     */
+    public function setAwayWin($awayWin)
+    {
+        $this->awayWin = $awayWin;
+
+        return $this;
+    }
+
+    /**
+     * Get awayWin
+     *
+     * @return integer
+     */
+    public function getAwayWin()
+    {
+        return $this->awayWin;
+    }
+
+    /**
+     * Set draws
+     *
+     * @param integer $draws
+     *
+     * @return Game
+     */
+    public function setDraws($draws)
+    {
+        $this->draws = $draws;
+
+        return $this;
+    }
+
+    /**
+     * Get draws
+     *
+     * @return integer
+     */
+    public function getDraws()
+    {
+        return $this->draws;
+    }
+
+    /**
+     * Set over
+     *
+     * @param integer $over
+     *
+     * @return Game
+     */
+    public function setOver($over)
+    {
+        $this->over = $over;
+
+        return $this;
+    }
+
+    /**
+     * Get over
+     *
+     * @return integer
+     */
+    public function getOver()
+    {
+        return $this->over;
+    }
+
+    /**
+     * Set under
+     *
+     * @param integer $under
+     *
+     * @return Game
+     */
+    public function setUnder($under)
+    {
+        $this->under = $under;
+
+        return $this;
+    }
+
+    /**
+     * Get under
+     *
+     * @return integer
+     */
+    public function getUnder()
+    {
+        return $this->under;
+    }
 }

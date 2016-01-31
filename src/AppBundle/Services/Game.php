@@ -50,7 +50,8 @@ class Game {
                 "voteGoals" => $voteEntry == null ? '' : $voteEntry->getGoals(),
                 "tipGoals" => $this->getTipGoals($g),
                 "totalGameVotes" => $bigTotal,
-                "tipPercentage" => max(Array($homeP, $awayP, $drawP))
+                "tipPercentage" => max(Array($homeP, $awayP, $drawP)),
+                "AmountOfGoals" => $g->getGoals() + 0
             );
 
             $home = Array(

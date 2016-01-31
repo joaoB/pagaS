@@ -53,7 +53,7 @@ function updateVotesAux(elem, id) {
 function swap(e, l, dis, elem) {
     e.stopPropagation();
     if (user === null && (sawMessage = sawMessage + 1) % 3 == 0) return needLogin();
-
+    if (user === null) return;
     var currentRow = dis.closest("tr");
     var trid = currentRow.data('id');
     var tds = currentRow.find("td").eq(l).children("button");
@@ -119,7 +119,7 @@ function draw(elem, data) {
     });
 }
 
-function dataToDraw(v, id, sort = true) {
+function dataToDraw(v, id, sort) {
     v = v.replace(/&quot;/g, '\"');
     v = JSON.parse(v);
     if (sort)sortData(v);
