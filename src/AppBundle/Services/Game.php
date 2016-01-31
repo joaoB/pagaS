@@ -16,15 +16,11 @@ class Game {
         $this->request = $request_stack->getCurrentRequest();
     }
 
-    public function a(){
-        $game = $this->em->getRepository('AppBundle:Game')->getFutureGames();
-        var_dump($game);
-        return 1;
-    }
+
 
     public function action($user) {
 
-        $game = $this->em->getRepository('AppBundle:Game')->getFutureGames();
+        $game = $this->em->getRepository('AppBundle:Game')->findFutureGames();
 
         $data = [];
         $tableData = [];

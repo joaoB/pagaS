@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
 
 class GameRepository extends EntityRepository {
 
-    public function getFutureGames(){
+    public function findFutureGames(){
         $d = new \DateTime();
         $query = $this->createQueryBuilder('g')
             ->select('g')
