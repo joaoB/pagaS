@@ -46,9 +46,8 @@
 
                 <div class="panel">
                     <div class="panel-body">
-                        {% embed 'lucky/table.html.twig' with {'caption' : 'Jogos de hoje', 'table':  table } %}
-                        {% endembed %}
-                        {% embed 'lucky/table.html.twig' with {'caption' : 'Jogos de amanhã', 'table':  tomorrowGames } %}
+
+                        {% embed 'lucky/historyTable.html.twig' with {'caption' : 'Jogos de ontem', 'table':  history } %}
                         {% endembed %}
 
                     </div>
@@ -117,18 +116,4 @@
     <script src="js/jquery.flot.min.js"></script>
     <script src="js/jquery.flot.pie.min.js"></script>
     </html>
-
-    <script>
-            user = {{ user|json_encode()}};
-            {% for key,value in data %}
-
-            dataToDraw('{{ value|json_encode() }}', '#placeholder{{ key }}', true);
-
-            {% endfor %}
-
-            {% for key,value in OU %}
-            dataToDraw('{{ value|json_encode() }}', '#placeholderGoals{{ key }}', false);
-            {% endfor %}
-    </script>
-
 {% endblock %}

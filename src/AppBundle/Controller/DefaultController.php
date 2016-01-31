@@ -25,7 +25,7 @@ class DefaultController extends Controller {
      * @Method("GET")
      */
     public function test() {
-        var_dump($this->getUser()->getLastName());
+        $result = $this->get('game_worker')->a();
         return new Response(1);
     }
 
@@ -82,10 +82,10 @@ class DefaultController extends Controller {
         }
 
         $data = $this->get('game_worker')->action($u);
-
+        //return new Response($data);
         $html = $this->container->get('templating')->render(
             'lucky/index.html.twig',
-            array('data' => $data[0], 'table' => $data[1], 'OU' => $data[2], "user" => $u)
+            array('data' => $data[0], 'table' => $data[1], 'OU' => $data[2], 'tomorrowGames' => $data[3], "user" => $u)
         );
         return new Response($html);
     }
@@ -97,7 +97,7 @@ class DefaultController extends Controller {
     public function newBet() {
         if ($this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             // authenticated (NON anonymous)
-             $this->get('game_worker')->newBet($this->getUser());
+            $this->get('game_worker')->newBet($this->getUser());
             $amountOfVotes = $this->get('game_worker')->amountOfVotes();
             return new JsonResponse(array('status' => $amountOfVotes));
         }
@@ -112,9 +112,29 @@ class DefaultController extends Controller {
      * @Route("/amountOfVotes", name="amountOfVotes")
      * @Method("POST")
      */
-    public function amountOfVotes(){
+    public function amountOfVotes() {
         $result = $this->get('game_worker')->amountOfVotes();
         return new Response($result);
+    }
+
+    /**
+     * @Route("/history", name="historico")
+     * @Method("GET")
+     */
+    public function historico() {
+        $u = null;
+        if ($this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            // authenticated (NON anonymous)
+            $u = $this->getUser();
+        }
+        $result = $this->get('game_worker')->getPreviousGames();
+
+        $html = $this->container->get('templating')->render(
+            'lucky/historic.html.twig',
+            array('history' => $result, "user" => $u)
+        );
+        return new Response($html);
+
     }
 
     //TODO: handle voting

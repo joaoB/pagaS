@@ -1,0 +1,122 @@
+{% if  table|length >0 %}
+<table class="table table-striped" id="games_table">
+    <caption>{{ caption }}</caption>
+    <thead>
+    <tr>
+        <th>Jogo</th>
+        <th>Vencedor</th>
+        <th>Golos</th>
+        <th>Tip</th>
+        <th>Confiança</th>
+        <th>Votos neste jogo</th>
+        <th>Estatísticas</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for key,value in table %}
+        <tr data-id={{ attribute(value, "gameId") }} data-toggle="collapse"
+            data-target="#demo{{ attribute(value, "gameId") }}"
+            class="accordion-toggle">
+            <td>
+                <b>{{ attribute(value, "game") }}</b>
+            </td>
+            <!--TODO: class depends on what the user voted -->
+            <td>
+                {% if  attribute(value, "voteResult") == 'home' %}
+                    <button type="button" class="btn btn-primary btn-sm bet" value="home">1
+                    </button>
+                {% else %}
+                    <button type="button" class="btn btn-secunday btn-sm bet" value="home">1
+                    </button>
+                {% endif %}
+                {% if  attribute(value, "voteResult") == 'draw' %}
+                    <button type="button" class="btn btn-primary btn-sm bet" value="draw">X
+                    </button>
+                {% else %}
+                    <button type="button" class="btn btn-secunday btn-sm bet" value="draw">X
+                    </button>
+                {% endif %}
+
+                {% if  attribute(value, "voteResult") == 'away' %}
+                    <button type="button" class="btn btn-primary btn-sm bet" value="away">2
+                    </button>
+                {% else %}
+                    <button type="button" class="btn btn-secunday btn-sm bet" value="away">2
+                    </button>
+                {% endif %}
+            </td>
+            <!--TODO: amount of goals depends on game -->
+            <td>
+                {% if  attribute(value, "voteGoals") == 'over' %}
+                    <button type="button" class="btn btn-primary btn-sm betGolos" value="over">+
+                    </button>
+                {% else %}
+                    <button type="button" class="btn btn-secondary btn-sm betGolos"
+                            value="over">+
+                    </button>
+                {% endif %}
+                {% if  attribute(value, "voteGoals") == 'under' %}
+                    <button type="button" class="btn btn-primary btn-sm betGolos" value="under">
+                        -
+                    </button>
+                {% else %}
+                    <button type="button" class="btn btn-secondary btn-sm betGolos"
+                            value="under">-
+                    </button>
+                {% endif %}
+                <span><b>{{ attribute(value, "AmountOfGoals") }}</b></span>
+
+            </td>
+            <td>
+                <b>{{ attribute(value, "tip") }}</b> <br/>
+                <b>{{ attribute(value, "tipGoals") }}</b>
+            </td>
+            <td>
+                {% if  attribute(value, "tipPercentage")  < 50 %}
+                <span class="label label-danger"> <b>Baixa</b>
+                    {% endif %}
+                    {% if  attribute(value, "tipPercentage")  >= 50 and attribute(value, "tipPercentage") < 60 %}
+                    <span class="label label-warning"> <b>Média</b>
+                        {% endif %}
+                        {% if  attribute(value, "tipPercentage")  >= 60 and attribute(value, "tipPercentage") < 75 %}
+                        <span class="label label-success"> <b>Média alta</b>
+                            {% endif %}
+                            {% if  attribute(value, "tipPercentage")  >= 75 and attribute(value, "tipPercentage") < 90 %}
+                            <span class="label label-info"> <b>Boa</b>
+                                {% endif %}
+                                {% if attribute(value, "tipPercentage") >= 90 %}
+                                <span class="label label-primary"> <b>Muito boa</b>
+                                    {% endif %}
+                                             </span>
+            </td>
+            <td class='amount'>
+                <b>{{ attribute(value, "totalGameVotes") }}</b>
+            </td>
+            <td>
+                <button class="btn btn-default btn-xs"><span
+                            class="glyphicon glyphicon-eye-open"></span></button>
+            </td>
+        <tr>
+            <td colspan="12" class="hiddenRow">
+                <div class="accordian-body collapse" id="demo{{ attribute(value, "gameId") }}">
+                    <div class="row">
+                        <div class="col-sm-6"> Equipa vencedora
+                            <div id="placeholder{{ attribute(value, "gameId") }}"
+                                 class="demo-placeholder placeholder"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            Total de golos
+                            <div id="placeholderGoals{{ attribute(value, "gameId") }}"
+                                 class="demo-placeholder placeholder"></div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+{% endif %}

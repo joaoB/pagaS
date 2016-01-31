@@ -16,13 +16,21 @@ class Game {
         $this->request = $request_stack->getCurrentRequest();
     }
 
+    public function a(){
+        $game = $this->em->getRepository('AppBundle:Game')->getFutureGames();
+        var_dump($game);
+        return 1;
+    }
+
     public function action($user) {
 
-        $game = $this->em->getRepository('AppBundle:Game')->findAll();
+        $game = $this->em->getRepository('AppBundle:Game')->getFutureGames();
 
         $data = [];
         $tableData = [];
         $OU = [];
+        $tomorrowGames = [];
+        $date = new \DateTime();
 
         foreach ($game as $g) {
 
@@ -41,6 +49,7 @@ class Game {
             if ($user != null) {
                 $voteEntry = $this->em->getRepository('AppBundle:UserVote')->findOneBy(Array("gameId" => $g->getId(), "userId" => $user->getId()));
             }
+
 
             $t = Array(
                 "gameId" => $g->getId(),
@@ -66,12 +75,34 @@ class Game {
                 "label" => 'Empate',
                 "data" => $drawP
             );
-            array_push($tableData, $t);
-            array_push($OU, $this->getOU($g));
-            array_push($data, Array($home, $away, $draw));
+
+            $gameDay = $g->getDate();
+
+
+            $date = date('Y-m-d', $gameDay->getTimestamp());
+            $today = date('Y-m-d');
+            $tomorrow = date('Y-m-d', strtotime('tomorrow'));
+            $day_after_tomorrow = date('Y-m-d', strtotime('tomorrow + 1 day'));
+
+            if ($date == $today) {
+                array_push($tableData, $t);
+            }
+            else {
+                if ($date == $tomorrow) {
+                    array_push($tomorrowGames, $t);
+                }
+                else {
+                    if ($date == $day_after_tomorrow) {
+
+                    }
+                }
+            }
+
+            $OU[$g->getId()] = $this->getOU($g);
+            $data[$g->getId()] = Array($home, $away, $draw);
         }
 
-        return Array($data, $tableData, $OU);
+        return Array($data, $tableData, $OU, $tomorrowGames);
 
     }
 
@@ -209,6 +240,62 @@ class Game {
 
         return $teams[$maxs[0]];
 
+    }
+
+
+    public function getPreviousGames() {
+        $history = $this->em->getRepository('AppBundle:OldGames')->findAll();
+
+        $historyResult = [];
+        foreach ($history as $h) {
+            $game = $this->em->getRepository('AppBundle:Game')->findOneById($h->getGame()->getId());
+
+            $homeGoals = $h->getHomeResult();
+            $awayGoals = $h->getAwayResult();
+            $tipGoals = $this->getTipGoals($game); //return 'mais', 'menos'
+            $wasTipGoalCorrect = $this->wasCorrectGoalsTip($game, $homeGoals + $awayGoals);
+            $wasTipResultCorrect = $this->wasCorrectResultTip($game, $homeGoals, $awayGoals);
+            $resultTip = $this->getTip($game);
+            $entry = Array(
+                "game" => $game->getHome() . " vs " . $game->getAway(),
+                'homeGoals' => $homeGoals,
+                'awayGoals' => $awayGoals,
+                'tipGoals' => $tipGoals,
+                'wasTipGoalCorrect' => $wasTipGoalCorrect,
+                'resultTip' => $resultTip,
+                'wasTipResultCorrect' => $wasTipResultCorrect);
+
+            $historyResult[$game->getId()] = $entry;
+        }
+
+        return $historyResult;
+
+    }
+
+    private function wasCorrectResultTip(\AppBundle\Entity\Game $g, $home, $away) {
+        if ($g->getHomeWin() > $g->getAwayWin() && $g->getHomeWin() > $g->getDraws() && $home > $away) {
+            return true;
+        }
+        if ($g->getAwayWin() > $g->getHomeWin() && $g->getAwayWin() > $g->getDraws() && $away > $home) {
+            return true;
+        }
+        if ($g->getDraws() > $g->getHomeWin() && $g->getDraws() > $g->getAwayWin() && $away == $home) {
+            return true;
+        }
+        return false;
+
+    }
+
+    private function wasCorrectGoalsTip(\AppBundle\Entity\Game $g, $amountOfGoals) {
+        if ($g->getOver() > $g->getUnder() && $amountOfGoals > $g->getGoals()) {
+            //correct over tip
+            return true;
+        }
+        if ($g->getUnder() > $g->getOver() && $amountOfGoals < $g->getGoals()) {
+            return true;
+        }
+
+        return false; // incorrect
     }
 
 }

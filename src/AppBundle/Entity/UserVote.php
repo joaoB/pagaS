@@ -33,7 +33,7 @@ class UserVote {
     private $userId;
 
     /**
-     * @ORM\ManyToOne(targetEntity="game")
+     * @ORM\ManyToOne(targetEntity="Game")
      * @ORM\JoinColumn(name="gameId", referencedColumnName="id")
      */
     private $gameId;

@@ -14,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="game")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\GameRepository")
  */
 class Game {
     /**
@@ -24,6 +25,12 @@ class Game {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var DateTime
+     * @ORM\Column(name="date", type="datetime", nullable=true)
+     */
+    private $date;
 
     /**
      * @var string
@@ -285,5 +292,29 @@ class Game {
     public function getGoals()
     {
         return $this->goals;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Game
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 }
