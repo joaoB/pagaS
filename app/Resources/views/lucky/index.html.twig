@@ -191,12 +191,12 @@
         <div class="row">
             <div class="col col-sm-12">
 
-                <h1>Follow Us! Follow the Green!</h1>
+                <!--  <h1>Follow Us! Follow the Green!</h1>
 
-                <div class="btn-group">
+                 <div class="btn-group">
                     <a class="btn btn-twitter btn-lg" href="#"><i class="icon-twitter icon-large"></i> Twitter</a>
-                    <a class="btn btn-facebook btn-lg" href="#"><i class="icon-facebook icon-large"></i> Facebook</a>
-                </div>
+                     <a class="btn btn-facebook btn-lg" href="#"><i class="icon-facebook icon-large"></i> Facebook</a>
+                </div>-->
 
             </div>
         </div>
@@ -231,7 +231,7 @@
     <script>
         user = {{ user|json_encode()}};
         {% for key,value in data %}
-        dataToDraw('{{ value|json_encode() }}', '#placeholder{{ key }}');
+        dataToDraw('{{ value|json_encode() }}', '#placeholder{{ key }}', true);
         {% endfor %}
 
         {% for key,value in OU %}
