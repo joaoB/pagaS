@@ -310,10 +310,10 @@ class Game {
 
     public function userHadCorrectGoalTip(\AppBundle\Entity\OldGames $oldGame, $userTip, $goalsThreshold) {
 
-        if ($oldGame->getHomeResult() + $oldGame->getAwayResult() > $goalsThreshold && $userTip->getResult() == 'over') {
+        if ($oldGame->getHomeResult() + $oldGame->getAwayResult() > $goalsThreshold && $userTip->getGoals() == 'over') {
             return true;
         }
-        if ($oldGame->getHomeResult() + $oldGame->getAwayResult() < $goalsThreshold && $userTip->getResult() == 'under') {
+        if ($oldGame->getHomeResult() + $oldGame->getAwayResult() < $goalsThreshold && $userTip->getGoals() == 'under') {
             return true;
         }
         return false; // incorrect

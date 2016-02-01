@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    {% embed 'lucky/historyTable.html.twig' with {'caption' : 'Jogos de ontem', 'table':  history } %}
+    {% endembed %}
+
+{% endblock %}
