@@ -340,7 +340,8 @@ class Game {
 
                 $tipResults = 'Sem aposta no vencedor';
                 if ($userTip->getResult() != null) {
-                    $tipResults = $userTip->getResult() == 'home' ? $g->getHome() : $g->getAway();
+                    $r = $userTip->getResult();
+                    $tipResults =  $r== 'home' ? $g->getHome() : ($r == 'away' ? $g->getAway() : 'Empate');
                 }
 
                 $entry = Array(

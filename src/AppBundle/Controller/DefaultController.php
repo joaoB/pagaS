@@ -151,7 +151,7 @@ class DefaultController extends Controller {
         $result = $this->get('game_worker')->userStatistics($userId);
 
         $html = $this->container->get('templating')->render(
-            'lucky/stats.html.twig',
+            'lucky/historic.html.twig',
             array('history' => $result, "user" => $u)
         );
         return new Response($html);
