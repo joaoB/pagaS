@@ -137,6 +137,28 @@ class DefaultController extends Controller {
 
     }
 
+
+    /**
+     * @Route("/stats/{userId}", name="stas", requirements={"userId": "[0-9]+"})
+     * @Method("GET")
+     */
+    public function stats($userId) {
+        $u = null;
+        if ($this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            // authenticated (NON anonymous)
+            $u = $this->getUser();
+        }
+        $result = $this->get('game_worker')->userStatistics($userId);
+
+        $html = $this->container->get('templating')->render(
+            'lucky/historic.html.twig',
+            array('history' => $result, "user" => $u)
+        );
+        return new Response($html);
+
+    }
+
+
     //TODO: handle voting
     //vote with user validations
     //yesterday, today and tomorrow games

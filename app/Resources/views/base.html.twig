@@ -1,35 +1,158 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}#PagaSantana - Free Tips{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon2.ico') }}" />
-		<link rel="stylesheet" href="{{ asset('css/app.css') }}" />
-		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
-		<script type="text/javascript" src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}#PagaSantana - Free Tips{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon2.ico') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
+    <script type="text/javascript" src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
 
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <!-- script references -->
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="js/jquery.flot.min.js"></script>
+    <script src="js/jquery.flot.pie.min.js"></script>
 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
 
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
 
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 
-        <!--[if lt IE 9]>
-        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-        <link href="css/styles.css" rel="stylesheet">
-    </head>
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="css/styles.css" rel="stylesheet">
+</head>
 
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<body>
+<header class="navbar navbar-default navbar-fixed-top" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">#PagaSantana</a>
+        </div>
+        <nav class="collapse navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/history">Green/Reds</a>
+                </li>
+            </ul>
+
+
+            <ul class="nav navbar-right navbar-nav" style="padding:12px;">
+
+                {% if  user is null %}
+                    <a class="btn btn-block btn-social btn-facebook" href="/login/facebook">
+                        <span class="fa fa-facebook"></span> Login com Facebook
+                    </a>
+                {% else %}
+                    <li>
+
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="/stats/{{ user.getId() }}">Minhas apostas</a>
+                            </li>
+                        </ul>
+                    <li>
+
+                        <a class="btn btn-block btn-social btn-facebook" href="/logout">
+                            <span class="fa fa-sign-out"></span> Sair
+
+                        </a>
+                    </li>
+                {% endif %}
+
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="panel">
+                <div class="panel-body">
+                    {% block body %}{% endblock %}
+                </div>
+                <div id="masthead">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <h1>
+                                    <p class="lead"></p>
+                                </h1>
+                            </div>
+
+                        </div>
+                    </div><!-- /cont -->
+
+
+                    <!--/stories-->
+
+
+                </div>
+            </div>
+
+
+        </div><!--/col-12-->
+    </div>
+</div>
+<div class="container" id="footer">
+    <div class="row">
+        <div class="col col-sm-12">
+
+            <!--  <h1>Follow Us! Follow the Green!</h1>
+
+             <div class="btn-group">
+                <a class="btn btn-twitter btn-lg" href="#"><i class="icon-twitter icon-large"></i> Twitter</a>
+                 <a class="btn btn-facebook btn-lg" href="#"><i class="icon-facebook icon-large"></i> Facebook</a>
+            </div>-->
+
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <ul class="list-inline">
+                    <li><i class="icon-facebook icon-2x"></i></li>
+                    <li><i class="icon-twitter icon-2x"></i></li>
+                </ul>
+
+            </div>
+            <div class="col-sm-6">
+                <p class="pull-right">#PagaSantana -- Todos os direitos reservados ao nosso tio</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- script references -->
+<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="js/jquery.flot.min.js"></script>
+<script src="js/jquery.flot.pie.min.js"></script>
+
+{% block javascripts %}{% endblock %}
+</body>
 </html>

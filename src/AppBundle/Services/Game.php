@@ -17,7 +17,6 @@ class Game {
     }
 
 
-
     public function action($user) {
 
         $game = $this->em->getRepository('AppBundle:Game')->findFutureGames();
@@ -292,6 +291,71 @@ class Game {
         }
 
         return false; // incorrect
+    }
+
+
+    public function userHadCorrectResultTip(\AppBundle\Entity\OldGames $oldGame, $userTip) {
+
+        if ($oldGame->getHomeResult() > $oldGame->getAwayResult() && $userTip->getResult() == 'home') {
+            return true;
+        }
+        if ($oldGame->getAwayResult() > $oldGame->getHomeResult() && $userTip->getResult() == 'away') {
+            return true;
+        }
+        if ($oldGame->getAwayResult() == $oldGame->getHomeResult() && $userTip->getResult() == 'draw') {
+            return true;
+        }
+        return false; // incorrect
+    }
+
+    public function userHadCorrectGoalTip(\AppBundle\Entity\OldGames $oldGame, $userTip, $goalsThreshold) {
+
+        if ($oldGame->getHomeResult() + $oldGame->getAwayResult() > $goalsThreshold && $userTip->getResult() == 'over') {
+            return true;
+        }
+        if ($oldGame->getHomeResult() + $oldGame->getAwayResult() < $goalsThreshold && $userTip->getResult() == 'under') {
+            return true;
+        }
+        return false; // incorrect
+    }
+
+    public function userStatistics($userId) {
+        //TODO: only tips of this week
+        $tipsOfAllUsers = $this->em->getRepository('AppBundle:UserVote')->findAll();
+        $historyResult = [];
+        foreach ($tipsOfAllUsers as $userTip) {
+            $g = $userTip->getGameId();
+            $oldGame = $this->em->getRepository('AppBundle:OldGames')->findByGame($g->getId());
+
+            foreach ($oldGame as $o) {
+                $correctResult = $this->userHadCorrectResultTip($o, $userTip);
+
+                $goalsThreshold = $g->getGoals();
+                $correctGoals = $this->userHadCorrectGoalTip($o, $userTip, $goalsThreshold);
+
+                $tipGoals = 'Sem aposta nos golos';
+                if ($userTip->getGoals() != null) {
+                    $tipGoals = $userTip->getGoals() == 'over' ? 'Mais' : 'Menos';
+                }
+
+                $tipResults = 'Sem aposta no vencedor';
+                if ($userTip->getResult() != null) {
+                    $tipResults = $userTip->getResult() == 'home' ? $g->getHome() : $g->getAway();
+                }
+
+                $entry = Array(
+                    "game" => $g->getHome() . " vs " . $g->getAway(),
+                    'homeGoals' => $o->getHomeResult(),
+                    'awayGoals' => $o->getAwayResult(),
+                    'tipGoals' => $tipGoals,
+                    'wasTipGoalCorrect' => $correctGoals,
+                    'resultTip' => $tipResults,
+                    'wasTipResultCorrect' => $correctResult);
+
+                $historyResult[$g->getId()] = $entry;
+            }
+        }
+        return $historyResult;
     }
 
 }

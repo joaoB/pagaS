@@ -2,6 +2,10 @@
   width:auto;
 }
 
+.panel-body {
+    padding: 35px;
+}
+
 body {
   padding-top:50px;
 }

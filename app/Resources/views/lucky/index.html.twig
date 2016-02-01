@@ -1,122 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <html lang="en">
-    <header class="navbar navbar-default navbar-fixed-top" role="banner">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="/" class="navbar-brand">#PagaSantana</a>
-            </div>
-            <nav class="collapse navbar-collapse" role="navigation">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="/history">Green/Reds</a>
-                    </li>
-                </ul>
 
 
-                <ul class="nav navbar-right navbar-nav" style="padding:12px;">
 
-                    {% if  user is null %}
-                        <a class="btn btn-block btn-social btn-facebook" href="/login/facebook">
-                            <span class="fa fa-facebook"></span> Login com Facebook
-                        </a>
-                    {% else %}
-
-                        <a class="btn btn-block btn-social btn-facebook" href="/logout">
-                            <span class="fa fa-sign-out"></span> Sair
-
-                        </a>
-
-                    {% endif %}
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="row">
-
-            <div class="col-md-12">
-
-                <div class="panel">
-                    <div class="panel-body">
                         {% embed 'lucky/table.html.twig' with {'caption' : 'Jogos de hoje', 'table':  table } %}
                         {% endembed %}
                         {% embed 'lucky/table.html.twig' with {'caption' : 'Jogos de amanhã', 'table':  tomorrowGames } %}
                         {% endembed %}
-
-                    </div>
-                    <div id="masthead">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <h1>
-                                        <p class="lead"></p>
-                                    </h1>
-                                </div>
-
-                            </div>
-                        </div><!-- /cont -->
-
-
-                        <!--/stories-->
-
-
-                    </div>
-                </div>
-
-
-            </div><!--/col-12-->
-        </div>
-    </div>
-
-
-    <div class="container" id="footer">
-        <div class="row">
-            <div class="col col-sm-12">
-
-                <!--  <h1>Follow Us! Follow the Green!</h1>
-
-                 <div class="btn-group">
-                    <a class="btn btn-twitter btn-lg" href="#"><i class="icon-twitter icon-large"></i> Twitter</a>
-                     <a class="btn btn-facebook btn-lg" href="#"><i class="icon-facebook icon-large"></i> Facebook</a>
-                </div>-->
-
-            </div>
-        </div>
-    </div>
-
-    <hr>
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <ul class="list-inline">
-                        <li><i class="icon-facebook icon-2x"></i></li>
-                        <li><i class="icon-twitter icon-2x"></i></li>
-                    </ul>
-
-                </div>
-                <div class="col-sm-6">
-                    <p class="pull-right">#PagaSantana -- Todos os direitos reservados ao nosso tio</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
-    <!-- script references -->
-    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="js/jquery.flot.min.js"></script>
-    <script src="js/jquery.flot.pie.min.js"></script>
-    </html>
 
     <script>
             user = {{ user|json_encode()}};
