@@ -127,7 +127,7 @@ class DefaultController extends Controller {
             // authenticated (NON anonymous)
             $u = $this->getUser();
         }
-        $result = $this->get('game_worker')->userStatistics(1);
+        $result = $this->get('game_worker')->getPreviousGames();
 
         $html = $this->container->get('templating')->render(
             'lucky/historic.html.twig',
