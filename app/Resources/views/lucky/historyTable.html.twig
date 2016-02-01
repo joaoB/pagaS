@@ -1,47 +1,45 @@
 {% if  table|length >0 %}
 
-    <table class="table table-striped" id="history_table">
-        <caption>{{ caption }}</caption>
-        <thead>
-        <tr>
-            <th>Jogo</th>
-            <th>Resultado</th>
-            <th>Tip</th>
+<table class="table table-striped" id="history_table">
+    <caption>{{ caption }}</caption>
+    <thead>
+    <tr>
+        <th>Jogo</th>
+        <th>Resultado</th>
+        <th>Tip</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for key,value in table %}
+        <tr data-toggle="collapse"
+            class="accordion-toggle">
+            <td>
+                <b>{{ attribute(value, "game") }}</b>
+            </td>
+            <!--TODO: class depends on what the user voted -->
+            <td>
+                <b>{{ attribute(value, "homeGoals") }} - {{ attribute(value, "awayGoals") }}</b>
+            </td>
+            <!--TODO: amount of goals depends on game -->
+            <td>
+                {% if  attribute(value, "wasTipResultCorrect") %}
+                <span class="label label-success"> <b>{{ attribute(value, "resultTip") }} </b> </span>
+                    {% else %}
+                    <span class="label label-danger"> <b>{{ attribute(value, "resultTip") }} </b> </span>
+                        {% endif %}<br/>
+                        {% if  attribute(value, "wasTipGoalCorrect") %}
+                        <span class="label label-success"> <b>{{ attribute(value, "tipGoals") }} </b> </span>
+                            {% else %}
+                            <span class="label label-danger"> <b>{{ attribute(value, "tipGoals") }} </b> </span>
+                                {% endif %}
+
+            </td>
 
         </tr>
-        </thead>
+    {% endfor %}
 
-        <tbody>
-        {% for key,value in table %}
-            <tr data-toggle="collapse"
-                class="accordion-toggle">
-                <td>
-                    <b>{{ attribute(value, "game") }}</b>
-                </td>
-                <td>
-                    <b>{{ attribute(value, "homeGoals") }} - {{ attribute(value, "awayGoals") }}</b>
-                </td>
-                <td>
-                    {% if  attribute(value, "wasTipResultCorrect") %}
-                    <span class="label label-success"> <b>{{ attribute(value, "resultTip") }} </b> </span>
-                {% elseif attribute(value, "resultTip") == 'Sem aposta no vencedor' %}
-                    <span class="label label-default"> <b>{{ attribute(value, "resultTip") }} </b> </span>
-                {% else %}
-                    <span class="label label-danger"> <b>{{ attribute(value, "resultTip") }} </b> </span>
-                    {% endif %}<br/>
-                    {% if  attribute(value, "wasTipGoalCorrect") %}
-                        <span class="label label-success"> <b>{{ attribute(value, "tipGoals") }} </b> </span>
-                    {% elseif attribute(value, "tipGoals") == 'Sem aposta nos golos' %}
-                        <span class="label label-default"> <b>{{ attribute(value, "tipGoals") }} </b> </span>
-                    {% else %}
-                        <span class="label label-danger"> <b>{{ attribute(value, "tipGoals") }} </b> </span>
-                    {% endif %}
-
-                </td>
-
-            </tr>
-        {% endfor %}
-
-        </tbody>
-    </table>
+    </tbody>
+</table>
 {% endif %}
