@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e66e289-9a3f-46ab-8d9b-52709df11868" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/lucky/stats.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/lucky/stats.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Services/Game.php" afterPath="$PROJECT_DIR$/src/AppBundle/Services/Game.php" />
     </list>
     <ignored path="blog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,8 +57,8 @@
       <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.161291">
-              <caret line="153" column="19" selection-start-line="153" selection-start-column="19" selection-end-line="153" selection-end-column="34" />
+            <state vertical-scroll-proportion="-16.32258">
+              <caret line="150" column="67" selection-start-line="150" selection-start-column="60" selection-end-line="150" selection-end-column="67" />
               <folding>
                 <element signature="e#40#97#0#PHP" expanded="true" />
               </folding>
@@ -66,10 +66,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="stats.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="stats.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/lucky/stats.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.06521739">
+            <state vertical-scroll-proportion="-2.1290324">
               <caret line="3" column="79" selection-start-line="3" selection-start-column="79" selection-end-line="3" selection-end-column="79" />
               <folding />
             </state>
@@ -86,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Game.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Services/Game.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.258064">
-              <caret line="315" column="105" selection-start-line="315" selection-start-column="105" selection-end-line="315" selection-end-column="105" />
+            <state vertical-scroll-proportion="0.13043478">
+              <caret line="323" column="84" selection-start-line="323" selection-start-column="84" selection-end-line="323" selection-end-column="84" />
               <folding>
                 <element signature="e#38#68#0#PHP" expanded="true" />
               </folding>
@@ -179,9 +179,9 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/lucky/historyTable.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Services/Game.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/lucky/historic.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/lucky/stats.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Services/Game.php" />
       </list>
     </option>
   </component>
@@ -787,16 +787,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Services/Game.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.258064">
-          <caret line="315" column="105" selection-start-line="315" selection-start-column="105" selection-end-line="315" selection-end-column="105" />
-          <folding>
-            <element signature="e#38#68#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/lucky/historyTable.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27606177">
@@ -821,21 +811,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/lucky/stats.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.1290324">
+          <caret line="3" column="79" selection-start-line="3" selection-start-column="79" selection-end-line="3" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.161291">
-          <caret line="153" column="19" selection-start-line="153" selection-start-column="19" selection-end-line="153" selection-end-column="34" />
+        <state vertical-scroll-proportion="-16.32258">
+          <caret line="150" column="67" selection-start-line="150" selection-start-column="60" selection-end-line="150" selection-end-column="67" />
           <folding>
             <element signature="e#40#97#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/lucky/stats.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Services/Game.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06521739">
-          <caret line="3" column="79" selection-start-line="3" selection-start-column="79" selection-end-line="3" selection-end-column="79" />
-          <folding />
+        <state vertical-scroll-proportion="0.13043478">
+          <caret line="323" column="84" selection-start-line="323" selection-start-column="84" selection-end-line="323" selection-end-column="84" />
+          <folding>
+            <element signature="e#38#68#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

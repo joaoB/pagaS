@@ -321,7 +321,7 @@ class Game {
 
     public function userStatistics($userId) {
         //TODO: only tips of this week
-        $tipsOfAllUsers = $this->em->getRepository('AppBundle:UserVote')->findAll();
+        $tipsOfAllUsers = $this->em->getRepository('AppBundle:UserVote')->findByUserId($userId);
         $historyResult = [];
         foreach ($tipsOfAllUsers as $userTip) {
             $g = $userTip->getGameId();
